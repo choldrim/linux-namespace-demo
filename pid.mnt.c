@@ -17,6 +17,7 @@ char* const container_args[] = {
 
 int container_main(void* arg){
     printf("Container-inside the container!\n");
+    unshare(CLONE_NEWNS);
     system("mount -t proc proc /proc");
     execv(container_args[0], container_args);
     printf("Sometthind is wrong!\n");
